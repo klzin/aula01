@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura: Encontrando a Cidade Perdida</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .button-container {
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="content">
+        <h1>Transcrição</h1>
+        <p>Olá, estudantes! Tudo bem? Sou a Fernanda Mascheti, instrutora da Alura, e estou muito feliz de ter vocês nessa unidade!</p>
+        <p>Audiodescrição: Fernanda se descreve como uma mulher de pele negra clara, com cabelos cacheados e castanhos, à altura do ombro. Está usando um óculos de armação redonda na cor marrom e vesta uma camiseta preta com detalhes coloridos. Atrás, há uma parede iluminada com tons de azul e verde. À sua esquerda, uma estante com livros, um jogo de xadrez e uma luminária roxa.</p>
+        <p>Nessa unidade, vamos desenvolver uma aventura. Isso mesmo, vamos criar um jogo onde as pessoas vão vivenciar uma aventura! Vamos dar uma olhada?</p>
+        
+        <img src="cena-floresta.jpg" alt="Cena de floresta tropical com uma cachoeira">
+        <p>Um dia desses, dentro de um livro da biblioteca da escola, eu descobri uma carta antiga sobre uma cidade perdida, escondida por riquezas e belezas naturais. Nessa carta, a autora deixa algumas pistas para encontrar essa cidade e eu decidi segui-las!</p>
+        
+        <div class="button-container">
+            <button onclick="chooseLocation('rio')">Rio de Janeiro</button>
+            <button onclick="chooseLocation('pernambuco')">Pernambuco</button>
+        </div>
+    </div>
+
+    <script>
+        function chooseLocation(location) {
+            const content = document.getElementById('content');
+            content.innerHTML = ''; // Clear the content
+
+            if (location === 'rio') {
+                content.innerHTML = `
+                    <h1>Você começa sua jornada no Rio de Janeiro</h1>
+                    <p>Subindo o Pico da Tijuca ao amanhecer para encontrar a primeira pista.</p>
+                    <div class="button-container">
+                        <button onclick="searchPico()">Procurar a pista no topo do pico</button>
+                        <button onclick="returnHome()">Desistir e voltar para casa</button>
+                    </div>
+                `;
+            } else if (location === 'pernambuco') {
+                content.innerHTML = `
+                    <h1>Pernambuco não está disponível no momento.</h1>
+                    <p>Escolha outra opção.</p>
+                    <div class="button-container">
+                        <button onclick="goBack()">Voltar</button>
+                    </div>
+                `;
+            }
+        }
+
+        function searchPico() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h1>No topo do Pico da Tijuca</h1>
+                <p>Você encontra uma antiga inscrição apontando que a próxima pista está localizada no Amazonas.</p>
+                <div class="button-container">
+                    <button onclick="goToAmazonas()">Seguir para o Amazonas</button>
+                </div>
+            `;
+        }
+
+        function goToAmazonas() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h1>No Amazonas</h1>
+                <p>A busca pela cidade perdida se intensifica. Você se depara com um rio bifurcado.</p>
+                <div class="button-container">
+                    <button onclick="followRiver('left')">Seguir pelo rio à esquerda</button>
+                    <button onclick="followRiver('right')">Seguir pelo rio à direita</button>
+                </div>
+            `;
+        }
+
+        function followRiver(direction) {
+            const content = document.getElementById('content');
+            if (direction === 'right') {
+                content.innerHTML = `
+                    <h1>Rio à direita</h1>
+                    <p>O rio à direita termina em uma área pantanosa. Apesar de belas vistas, não há sinais da cidade perdida aqui.</p>
+                    <div class="button-container">
+                        <button onclick="goBack()">Retornar e tentar o outro rio</button>
+                    </div>
+                `;
+            } else if (direction === 'left') {
+                content.innerHTML = `
+                    <h1>Rio à esquerda</h1>
+                    <p>Retornando e escolhendo o rio à esquerda, você finalmente encontra a cachoeira escondida e as inscrições que levam à cidade perdida.</p>
+                    <div class="button-container">
+                        <button onclick="exploreCity()">Explorar a cidade perdida</button>
+                    </div>
+                `;
+            }
+        }
+
+        function returnHome() {
+            alert('Você decidiu voltar para casa. Tente novamente!');
+        }
+
+        function goBack() {
+            // Go back to the previous page or choice
+            location.reload(); // Simple way to reload the page
+        }
+
+        function exploreCity() {
+            const content = document.getElementById('content');
+            content.innerHTML = `
+                <h1>Parabéns!</h1>
+                <p>Você encontrou a cidade perdida! Nesta jornada, optamos pelo tema "Encontrando uma cidade perdida". Mas você pode escolher o tema que mais lhe agrada. Utilize HTML, CSS e JavaScript para criar sua própria aventura!</p>
+            `;
+        }
+    </script>
+</body>
+</html>
